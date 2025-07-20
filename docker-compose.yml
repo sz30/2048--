@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  2048-game:
+    build: .
+    ports:
+      - "9969:9969"
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+    volumes:
+      - ./logs:/app/logs 

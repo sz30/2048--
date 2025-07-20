@@ -1,0 +1,331 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #faf8ef;
+    color: #776e65;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 游戏容器 */
+#game-container {
+    width: 85%;
+    max-width: 600px;
+    min-width: 300px;
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* 头部 */
+#header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #776e65;
+}
+
+/* 分数面板 */
+#score-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.score-item {
+    background-color: #bbada0;
+    padding: 5px 15px;
+    border-radius: 3px;
+    text-align: center;
+    color: #eee4da;
+    width: 48%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.score-item span:first-child {
+    font-size: 13px;
+    display: block;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.score-item span:last-child {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 按钮区域 */
+#button-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 15; /* 确保按钮面板在模态窗口之上 */
+}
+
+#undo-button, #restart-button {
+    width: 48%;
+    padding: 10px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+#undo-button {
+    background-color: #8f7a66;
+    color: white;
+}
+
+#restart-button {
+    background-color: #f59563;
+    color: white;
+}
+
+#undo-button:hover {
+    background-color: #7d6c5a;
+}
+
+#restart-button:hover {
+    background-color: #e67e53;
+}
+
+/* 棋盘 */
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: 2%;
+}
+
+.cell {
+    background-color: #cdc1b4;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #776e65;
+    position: relative;
+    user-select: none;
+}
+
+/* 滑块样式 */
+.tile-2 { background-color: #eee4da; color: #776e65; }
+.tile-4 { background-color: #ede0c8; color: #776e65; }
+.tile-8 { background-color: #f2b179; color: white; }
+.tile-16 { background-color: #f59563; color: white; }
+.tile-32 { background-color: #f67c5f; color: white; }
+.tile-64 { background-color: #f65e3b; color: white; }
+.tile-128 { background-color: #edcf72; color: white; }
+.tile-256 { background-color: #edcc61; color: white; }
+.tile-512 { background-color: #edc850; color: white; }
+.tile-1024 { background-color: #edc53f; color: white; }
+.tile-2048 { background-color: #edc22e; color: white; }
+
+/* 滑块合并动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cell.pulse {
+    animation: pulse 0.6s ease-in-out;
+    z-index: 1;
+}
+
+/* 滑块出现动画 */
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.cell.appear {
+    animation: appear 0.2s ease-in-out;
+}
+
+/* 底部 */
+#footer {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: #776e65;
+}
+
+/* 赞助信息 */
+#sponsor-info {
+    width: 85%;
+    max-width: 600px;
+    font-size: 16px;
+    text-align: center;
+    color: #776e65;
+    margin-top: 5px;
+}
+
+#sponsor-info a {
+    color: #f59563;
+    text-decoration: none;
+}
+
+#sponsor-info a:hover {
+    text-decoration: underline;
+}
+
+/* 底部链接 */
+#footer a {
+    color: #f59563;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+}
+
+/* 模态框 */
+.modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 300px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    pointer-events: auto;
+    /* 确保模态窗口不会捕获所有点击事件 */
+    pointer-events: initial;
+}
+
+/* 添加一个透明遮罩，但不阻止底层按钮的点击 */
+.modal::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.modal-content button {
+    background-color: #f59563;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-content button:hover {
+    background-color: #e67e53;
+}
+
+/* 适配不同屏幕尺寸 */
+@media (max-width: 768px) {
+    body {
+        padding: 10px 0;
+        justify-content: flex-start;
+    }
+    
+    #game-container {
+        width: 95%;
+        margin-top: 0;
+        padding: 10px;
+        max-height: 85vh;
+    }
+    
+    #header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .score-item span:first-child {
+        font-size: 11px;
+    }
+    
+    .score-item span:last-child {
+        font-size: 18px;
+    }
+    
+    #sponsor-info {
+        width: 95%;
+        margin-top: 10px;
+        font-size: 14px;
+        position: relative;
+        bottom: 0;
+    }
+    
+    #footer {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+}
+
+/* 作弊模式通知 */
+#cheat-notification {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 100;
+    font-weight: bold;
+}

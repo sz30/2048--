@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 Game</title>
+    <!-- 引入CSS样式 -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- 游戏容器 -->
+    <div id="game-container">
+        <!-- 头部 -->
+        <div id="header">
+            <h1>2048</h1>
+        </div>
+
+        <!-- 分数面板 -->
+        <div id="score-panel">
+            <div class="score-item">
+                <span>CURRENT</span>
+                <span id="current-score">0</span>
+            </div>
+            <div class="score-item">
+                <span>BEST</span>
+                <span id="best-score">0</span>
+            </div>
+        </div>
+
+        <!-- 按钮区域 -->
+        <div id="button-panel">
+            <button id="undo-button" onclick="undoMove()">Undo</button>
+            <button id="restart-button" onclick="handleRestart()">New Game</button>
+        </div>
+
+        <!-- 棋盘 -->
+        <div id="grid-container"></div>
+
+        <!-- 底部 -->
+        <div id="footer">
+            Enjoy by <a href="https://github.com/sz30" target="_blank">Shaun Zhang</a>&nbsp;&nbsp;SN:2380511065
+        </div>
+        
+        <!-- 游戏结束通知 -->
+        <div id="game-over-modal" class="modal">
+            <div class="modal-content">
+                <h2>Game Over!</h2>
+                <button onclick="initGameAndCloseModal()">Try Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 赞助信息 - 移到了游戏容器外部 -->
+    <div id="sponsor-info">
+        <!-- 特别鸣谢 <a href="https://www.serv00.com/" target="_blank">serv00</a> 提供服务器支持 -->
+        Special thanks to <a href="https://idc.rest/" target="_blank">IDCREST</a> for providing server support  
+    </div>
+
+    <!-- 引入JavaScript脚本 -->
+    <script src="/static/js/script.js"></script>
+</body>
+</html> 
