@@ -275,6 +275,18 @@ body {
     background-color: #e67e53;
 }
 
+/* 模态窗口按钮容器 */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    min-width: 80px;
+}
+
 /* 适配不同屏幕尺寸 */
 @media (max-width: 768px) {
     body {
@@ -312,6 +324,18 @@ body {
     
     #footer {
         margin-top: 8px;
+        font-size: 14px;
+    }
+    
+    /* 移动端模态窗口按钮样式 */
+    .modal-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .modal-buttons button {
+        min-width: auto;
+        padding: 12px 16px;
         font-size: 14px;
     }
 }

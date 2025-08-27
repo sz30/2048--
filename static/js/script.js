@@ -5,6 +5,9 @@ let bestScore = parseInt(localStorage.getItem('bestScore')) || 0;
 // 撤销功能相关
 let historyStack = JSON.parse(localStorage.getItem('historyStack')) || [];
 
+// 游戏状态跟踪
+let isGameOver = false;
+
 // 检测作弊模式的滑动序列
 const cheatCode = ['left', 'left', 'right', 'right', 'right', 'right', 'left', 'left'];
 let inputSequence = [];
@@ -26,6 +29,9 @@ async function initGame() {
         localStorage.setItem('bestScore', bestScore);
         
         historyStack = []; // 清空历史记录栈
+        
+        // 重置游戏结束状态
+        isGameOver = false;
 
         updateUI(); // 更新界面显示
         
@@ -150,7 +156,12 @@ function calculateScoreDifference(oldBoard, newBoard, direction) {
 
 // 处理移动逻辑
 async function handleMove(direction) {
-    // 保存当前状态到历史记录栈
+    // 如果游戏已结束，不处理任何移动
+    if (isGameOver) {
+        return;
+    }
+    
+    // 保存当前状态到历史记录栈（在移动前保存）
     historyStack.push({
         board: JSON.parse(JSON.stringify(board)), // 深拷贝当前棋盘
         score: currentScore,
@@ -321,7 +332,7 @@ function exitCheatMode() {
 // 撤销上一步操作
 function undoMove() {
     if (historyStack.length === 0) {
-        alert("没有可以撤销的操作！");
+        alert("No moves to undo!");
         return;
     }
 
@@ -334,6 +345,9 @@ function undoMove() {
     const previousState = historyStack.pop(); // 弹出最近的历史状态
     board = previousState.board; // 恢复棋盘
     currentScore = previousState.score; // 恢复分数
+    
+    // 重置游戏结束状态，允许继续游戏
+    isGameOver = false;
     
     // 更新界面
     updateUI();
@@ -353,6 +367,9 @@ function handleRestart() {
         modal.style.display = 'none';
     }
     
+    // 重置游戏结束状态
+    isGameOver = false;
+    
     // 重新初始化游戏
     setTimeout(() => {
         initGame();
@@ -363,6 +380,9 @@ function handleRestart() {
 function showGameOverModal() {
     const modal = document.getElementById('game-over-modal');
     modal.style.display = 'block';
+    
+    // 设置游戏结束状态
+    isGameOver = true;
     
     // 确保Undo按钮在游戏结束时仍然可用
     document.getElementById('undo-button').style.zIndex = '20';
@@ -375,6 +395,12 @@ function initGameAndCloseModal() {
     setTimeout(() => {
         initGame();
     }, 10); // 短暂延迟确保模态窗口先关闭
+}
+
+// 撤销操作并关闭游戏结束弹窗
+function undoMoveAndCloseModal() {
+    // 直接调用和棋盘上Undo按钮相同的逻辑
+    undoMove();
 }
 
 // 监听键盘事件（PC端）
@@ -445,6 +471,9 @@ window.addEventListener('load', () => {
         currentScore = parseInt(localStorage.getItem('currentScore')) || 0;
         bestScore = parseInt(localStorage.getItem('bestScore')) || 0;
         historyStack = JSON.parse(localStorage.getItem('historyStack')) || [];
+        
+        // 重置游戏结束状态
+        isGameOver = false;
         
         // 更新界面
         updateUI();
