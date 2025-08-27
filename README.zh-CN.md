@@ -57,7 +57,7 @@
 
 ## 🎯 Demo
 
-🎯试玩：[2048.765431.xyz](https://2048.765431.xyz/)
+🎯 : [试玩](http://34.150.49.127:5000/)
 <img width="1279" alt="demo" src="https://github.com/user-attachments/assets/28fb9014-e52e-49b7-a413-a79b5f8749f0" />
 
 
