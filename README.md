@@ -58,7 +58,7 @@ An enhanced version of the classic 2048 game, now with even more fun features! T
 
 ## 🎯 Demo
 
-🎯 : [Play here](http://34.150.49.127:5000/)
+🎯 : [Play here](http://2048.765431.xyz:5000/)
 <img width="1279" alt="demo" src="https://github.com/user-attachments/assets/0df2c956-b6d9-4371-a916-f6ac3ae642be" />
 
 
