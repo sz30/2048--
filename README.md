@@ -113,8 +113,7 @@ Still updating! Issues and Pull Requests are super welcome—let’s make this g
 ## 🙏 Acknowledgements
 
 Thanks to the following sponsors for supporting this project:
-- [None](https://#/) providing the server
-- [Serv00](https://www.serv00.com/) providing the server
+- [Aurora Cloud](https://www.free-vps.net/) providing the server
 
 ---
-_Last updated: Aug. 2025_
+_Last updated: Oct. 2025_
