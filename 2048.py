@@ -50,6 +50,30 @@ def move(board, direction):
                         new_board[temp_row + 1][col] *= 2
                         new_board[temp_row][col] = 0
                         merged[temp_row + 1][col] = True
+	#Fixes #18					
+	elif direction == 'down':
+		for col in range(4):
+			tiles = [new_board[r][col] for r in range(4) if new_board[r][col] != 0]
+			tiles = tiles[::-1]  
+        
+			merged_tiles = []
+			skip = False
+			for i in range(len(tiles)):
+				if skip:
+					skip = False
+					continue
+				if i + 1 < len(tiles) and tiles[i] == tiles[i+1]:
+					merged_tiles.append(tiles[i] * 2)
+					skip = True
+				else:
+					merged_tiles.append(tiles[i])
+        
+			merged_tiles = merged_tiles[::-1]
+			for r in range(4):
+				if r < 4 - len(merged_tiles):
+					new_board[r][col] = 0
+				else:
+					new_board[r][col] = merged_tiles[r - (4 - len(merged_tiles))]
 
     elif direction == 'left':
         for row in range(4):
