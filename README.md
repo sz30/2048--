@@ -31,15 +31,10 @@
 
 An enhanced version of the classic 2048 game, now with even more fun features! This is a little project I whipped up in my spare time—hope it brings you some joy!
 
-## 🎯 Game Intro
+## 🎯 Demo
 
-2048 is a simple yet addictive number-merging game. On a 4x4 grid, swipe up, down, left, or right to merge tiles with the same number. The goal? Reach 2048 (but hey, you can keep going for even higher scores)!
-
-**How to play:**
-- Move tiles with arrow keys (←↑→↓), or swipe on mobile.
-- When two tiles with the same number collide, they merge into one.
-- After each move, a new 2 or 4 will randomly appear in an empty spot.
-- The game ends when there are no more moves left.
+🎯 : [Play here](http://2048.765431.xyz/)
+<img width="1279" alt="demo" src="assets/demo_v2.png" />
 
 ## ✨ Special Features
 
@@ -55,10 +50,32 @@ An enhanced version of the classic 2048 game, now with even more fun features! T
 - An Easter egg to skip the early grind — just for fun.
 - Pro tip: Cheating is fun, but don’t overdo it! 😉
 
-## 🎯 Demo
+## 🚀 Getting Started
 
-🎯 : [Play here](http://2048.765431.xyz/)
-<img width="1279" alt="demo" src="assets/demo_v2.png" />
+**Method 1: Download Release**
+1. Download the latest release.
+2. Make sure you have Python 3.x installed.
+3. Install dependencies: `pip install flask`
+4. Run: `python 2048.py`
+5. Open your browser and go to: [http://localhost:3000](http://localhost:3000)
+
+**Method 2: Clone from GitHub**
+```bash
+git clone https://github.com/sz30/2048--.git
+cd 2048
+pip install flask
+python 2048.py
+```
+
+## 🎯 Game Intro
+
+2048 is a simple yet addictive number-merging game. On a 4x4 grid, swipe up, down, left, or right to merge tiles with the same number. The goal? Reach 2048 (but hey, you can keep going for even higher scores)!
+
+**How to play:**
+- Move tiles with arrow keys (←↑→↓), or swipe on mobile.
+- When two tiles with the same number collide, they merge into one.
+- After each move, a new 2 or 4 will randomly appear in an empty spot.
+- The game ends when there are no more moves left.
 
 ## 📁 Project Structure
 ```text
@@ -87,23 +104,6 @@ An enhanced version of the classic 2048 game, now with even more fun features! T
 - `Dockerfile`: Defines the environment to run the app using Docker.
 - `docker-compose.yml`: Simplifies Docker deployment by managing services.
 - `DEPLOYMENT.md`: Step-by-step guide for deploying the application.
-
-## 🚀 Getting Started
-
-**Method 1: Download Release**
-1. Download the latest release.
-2. Make sure you have Python 3.x installed.
-3. Install dependencies: `pip install flask`
-4. Run: `python 2048.py`
-5. Open your browser and go to: [http://localhost:3000](http://localhost:3000)
-
-**Method 2: Clone from GitHub**
-```bash
-git clone https://github.com/sz30/2048.git
-cd 2048
-pip install flask
-python 2048.py
-```
 
 ## 🎨 Customization
 

@@ -31,15 +31,10 @@
 
 一個基於經典2048遊戲的增強版本，加入了更多有趣的功能！這個專案是我在閒暇時間開發的一個小遊戲，希望能給大家帶來一些樂趣。
 
-## 🎯 遊戲介紹
+## 🎯 Demo
 
-2048是一個簡單但令人上癮的數字合併遊戲。在4x4的棋盤上，透過上下左右滑動來合併相同的數字，目標是獲得2048這個數字（當然，你可以繼續玩下去獲得更高的分數！）。
-
-### 基本玩法：
-- 使用方向鍵（←↑→↓）移動方塊，手機端支援滑動操作
-- 相同數字的方塊相撞時會合併成為它們的和
-- 每次移動後會在空白處隨機出現一個 2 或 4
-- 當無法移動時遊戲結束
+🎯 : [試玩](http://2048.765431.xyz/)
+<img width="1279" alt="demo" src="assets/demo_v2.png" />
 
 ## ✨ 特色功能
 
@@ -55,10 +50,32 @@
 - 彩蛋功能，可快速跳過初期階段，僅供娛樂
 - 溫馨提示：作弊雖好，但不要貪杯喔！
 
-## 🎯 Demo
+## 🚀 快速開始
 
-🎯 : [試玩](http://2048.765431.xyz/)
-<img width="1279" alt="demo" src="assets/demo_v2.png" />
+### 方法一：直接下載
+1. 下載最新的release版本
+2. 確保安裝了Python 3.x
+3. 安裝依賴：`pip install flask`
+4. 運行：`python 2048.py`
+5. 打開瀏覽器並訪問: [http://localhost:3000](http://localhost:3000)
+
+### 方法二：從GitHub複製
+```bash
+git clone https://github.com/sz30/2048--.git
+cd 2048
+pip install flask
+python 2048.py
+```
+
+## 🎯 遊戲介紹
+
+2048是一個簡單但令人上癮的數字合併遊戲。在4x4的棋盤上，透過上下左右滑動來合併相同的數字，目標是獲得2048這個數字（當然，你可以繼續玩下去獲得更高的分數！）。
+
+### 基本玩法：
+- 使用方向鍵（←↑→↓）移動方塊，手機端支援滑動操作
+- 相同數字的方塊相撞時會合併成為它們的和
+- 每次移動後會在空白處隨機出現一個 2 或 4
+- 當無法移動時遊戲結束
 
 ## 📁 專案結構
 
@@ -89,36 +106,19 @@
 - `docker-compose.yml`: 用於簡化 Docker 部署和服務的管理
 - `DEPLOYMENT.md`: 詳細的專案部署指南
 
-## 🚀 快速開始
-
-### 方法一：直接下載
-1. 下載最新的release版本
-2. 確保安裝了Python 3.x
-3. 安裝依賴：`pip install flask`
-4. 運行：`python 2048.py`
-5. 打開瀏覽器並訪問: [http://localhost:3000](http://localhost:3000)
-
-### 方法二：從GitHub複製
-```bash
-git clone [https://github.com/sz30/2048.git](https://github.com/sz30/2048.git)
-cd 2048
-pip install flask
-python 2048.py
-```
-
-🎨 自訂義
+## 🎨 自訂義
 
 你可以透過修改styles.css來自訂遊戲的外觀，或者透過修改script.js來調整遊戲的行為。所有的程式碼都有詳細的註釋，方便你進行修改！
 
-📝 許可證
+## 📝 許可證
 
 GPL-2.0 license
 
-🤝 貢獻
+## 🤝 貢獻
 
 持續更新中，歡迎提交Issue和Pull Request！讓我們一起把這個遊戲變得更好玩！
 
-🙏 致謝
+## 🙏 致謝
 
 感謝以下贊助者對本專案的支援：
 - [/](#)  提供伺服器
@@ -126,5 +126,6 @@ GPL-2.0 license
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sz30/2048--&type=date&legend=top-left)](https://www.star-history.com/#sz30/2048--&type=date&legend=top-left)
+
 ---
 *最後更新：2026年3月*
