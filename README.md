@@ -31,7 +31,7 @@
 - Never let a slip of the finger ruin your game again!
 
 ### 2. Fast Mode
-- Enter the magic sequence: ←←→→ →→←← (left, left, right, right; right, right, left, left).
+- Enter the magic sequence: ⬅️⬅️ ➡️➡️  ➡️➡️ ⬅️⬅️ (left, left, right, right; right, right, left, left).
 - All tiles will magically turn into 128!
 - An Easter egg to skip the early grind — just for fun.
 
