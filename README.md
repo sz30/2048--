@@ -48,6 +48,7 @@ python 2048--.py
 Open your browser and go to: [http://localhost:3000](http://localhost:3000)
 
 **Method 2: Docker**
+
 *(For specific containerization DEPLOYMENT strategies, please refer to the built-in 'Deployment.md' guide for the full text.)*
 
 **Method 3: Download Release**
