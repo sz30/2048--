@@ -125,11 +125,9 @@ GPL-2.0 license
 感谢以下赞助者对本项目的支持：
 - [/](#) 提供服务器
 
-
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sz30/2048--&type=date&legend=top-left)](https://www.star-history.com/#sz30/2048--&type=date&legend=top-left)
-
 
 ---
 *最后更新：2026年3月*

@@ -126,6 +126,5 @@ GPL-2.0 license
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sz30/2048--&type=date&legend=top-left)](https://www.star-history.com/#sz30/2048--&type=date&legend=top-left)
-
 ---
 *最後更新：2026年3月*
