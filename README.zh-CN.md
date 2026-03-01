@@ -36,7 +36,7 @@
 2048是一个简单但令人上瘾的数字合并游戏。在4x4的棋盘上，通过上下左右滑动来合并相同的数字，目标是获得2048这个数字（当然，你可以继续玩下去获得更高的分数！）。
 
 ### 基本玩法：
-- 使用方向键或WASD控制方块移动
+- 使用方向键（←↑→↓）移动方块，手机端支持滑动操作
 - 相同数字的方块相撞时会合并成为它们的和
 - 每次移动后会在空白处随机出现一个2或4
 - 当无法移动时游戏结束
@@ -50,36 +50,46 @@
 - 再也不用因为手滑而懊恼了！
 
 ### 2. 隐藏的作弊模式
-- 滑动特殊序列：←←→→→→←←（左左右右 右右左左）
+- 滑动特殊序列：←←→→ →→←←（左左右右 右右左左）
 - 激活后所有数字都会变成128
-- 这是一个彩蛋功能，仅供娱乐使用
+- 彩蛋功能，可快速跳过初期阶段，仅供娱乐
 - 温馨提示：作弊虽好，但不要贪杯哦！
 
 ## 🎯 Demo
 
-🎯 : [试玩](http://34.150.49.127:5000/)
-<img width="1279" alt="demo" src="https://github.com/user-attachments/assets/28fb9014-e52e-49b7-a413-a79b5f8749f0" />
+🎯 : [试玩](http://2048.765431.xyz/)
+<img width="1279" alt="demo" src="assets/demo_v2.png" />
 
 
 
 
 ## 📁 项目结构
-```
+```text
 2048/
+├── assets/                   # 图像与媒体资源
 ├── static/
-│ ├── css/
-│ │ └── styles.css # 游戏界面样式
-│ └── js/
-│ └── script.js # 前端游戏逻辑
-├── index.html # 游戏主页面
-└── 2048.py # 后端服务器
+│   ├── css/
+│   │   └── styles.css        # 游戏界面样式
+│   └── js/
+│       └── script.js         # 前端游戏逻辑
+├── index.html                # 游戏主页面
+├── 2048.py                   # 后端服务器
+├── requirements.txt          # Python 依赖文件
+├── Dockerfile                # Docker 镜像配置文件
+├── docker-compose.yml        # Docker compose 配置文件
+└── DEPLOYMENT.md             # 部署指南
 ```
 
 ### 文件说明：
+- `assets/`: 存放项目演示截图及媒体文件（如旧版界面 `demo_v1.png` 以及现版界面 `demo_v2.png`）
 - `2048.py`: 使用Flask框架编写的后端服务器，处理游戏逻辑和API请求
 - `script.js`: 前端游戏逻辑，包含移动处理、动画效果和特殊功能实现
 - `styles.css`: 游戏界面样式，确保游戏美观且响应式
 - `index.html`: 游戏主页面，整合所有资源
+- `requirements.txt`: 运行后端所需的Python依赖列表
+- `Dockerfile`: 定义使用 Docker 运行小游戏的环境配置
+- `docker-compose.yml`: 用于简化 Docker 部署和服务的管理
+- `DEPLOYMENT.md`: 详细的项目部署指南
 
 ## 🚀 快速开始
 
@@ -88,7 +98,7 @@
 2. 确保安装了Python 3.x
 3. 安装依赖：`pip install flask`
 4. 运行：`python 2048.py`
-5. 在浏览器中访问：`http://localhost:9969`
+5. 打开浏览器并访问: [http://localhost:3000](http://localhost:3000)
 
 ### 方法二：从GitHub克隆
 ```bash
@@ -113,7 +123,13 @@ GPL-2.0 license
 ## 🙏 致谢
 
 感谢以下赞助者对本项目的支持：
-- [极光云](https://www.free-vps.net/) 提供服务器
-  
+- [/](#) 提供服务器
+
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=sz30/2048--&type=date&legend=top-left)](https://www.star-history.com/#sz30/2048--&type=date&legend=top-left)
+
+
 ---
-*最后更新：2025年10月*
+*最后更新：2026年3月*

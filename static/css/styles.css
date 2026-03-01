@@ -9,106 +9,120 @@ body {
     font-family: Arial, sans-serif;
     background-color: #faf8ef;
     color: #776e65;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    padding: 20px 0;
+    padding: 25px 0;
     overflow-y: auto;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* 游戏容器 */
-#game-container {
-    width: 85%;
-    max-width: 600px;
-    min-width: 300px;
-    background-color: #bbada0;
-    border-radius: 6px;
-    padding: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin-bottom: 20px;
+/* 主容器 */
+.container {
+    width: 500px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-/* 头部 */
-#header h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: center;
-    color: #776e65;
-}
-
-/* 分数面板 */
-#score-panel {
+/* 头部容器 (包含标题与操作区) */
+.header-wrapper {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    align-items: center;
+    margin-bottom: 25px;
     width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 4;
+    padding-right: 15px;
+}
+
+.title {
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0;
+    color: #776e65;
+    line-height: 1;
+}
+
+.game-intro {
+    font-size: 13px;
+    color: #776e65;
+    margin: 10px 0 0 0;
+}
+
+/* 右侧网格容器 (分数板与控制按钮) */
+.header-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    flex: 6;
 }
 
 .score-item {
     background-color: #bbada0;
-    padding: 5px 15px;
+    padding: 8px 10px;
     border-radius: 3px;
+    color: white;
     text-align: center;
-    color: #eee4da;
-    width: 48%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 80px;
 }
 
 .score-item span:first-child {
-    font-size: 13px;
-    display: block;
-    text-transform: uppercase;
+    font-size: 12px;
+    color: #eee4da;
+    line-height: 12px;
     margin-bottom: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .score-item span:last-child {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
+    line-height: 22px;
 }
 
-/* 按钮区域 */
-#button-panel {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    position: relative;
-    z-index: 15; /* 确保按钮面板在模态窗口之上 */
-}
-
-#undo-button, #restart-button {
-    width: 48%;
-    padding: 10px 0;
-    font-size: 16px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    position: relative;
-}
-
-#undo-button {
+/* 控制按钮 (Undo / New Game) */
+.action-btn {
     background-color: #8f7a66;
-    color: white;
+    color: #f9f6f2;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    line-height: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#restart-button {
-    background-color: #f59563;
-    color: white;
+.action-btn:hover {
+    background-color: #9f8b77;
 }
 
-#undo-button:hover {
-    background-color: #7d6c5a;
-}
-
-#restart-button:hover {
-    background-color: #e67e53;
+/* 游戏容器 */
+#game-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 25px auto;
 }
 
 /* 棋盘 */
@@ -138,26 +152,81 @@ body {
 }
 
 /* 滑块样式 */
-.tile-2 { background-color: #eee4da; color: #776e65; }
-.tile-4 { background-color: #ede0c8; color: #776e65; }
-.tile-8 { background-color: #f2b179; color: white; }
-.tile-16 { background-color: #f59563; color: white; }
-.tile-32 { background-color: #f67c5f; color: white; }
-.tile-64 { background-color: #f65e3b; color: white; }
-.tile-128 { background-color: #edcf72; color: white; }
-.tile-256 { background-color: #edcc61; color: white; }
-.tile-512 { background-color: #edc850; color: white; }
-.tile-1024 { background-color: #edc53f; color: white; }
-.tile-2048 { background-color: #edc22e; color: white; }
+.tile-2 {
+    background-color: #eee4da;
+    color: #776e65;
+}
+
+.tile-4 {
+    background-color: #ede0c8;
+    color: #776e65;
+}
+
+.tile-8 {
+    background-color: #f2b179;
+    color: white;
+}
+
+.tile-16 {
+    background-color: #f59563;
+    color: white;
+}
+
+.tile-32 {
+    background-color: #f67c5f;
+    color: white;
+}
+
+.tile-64 {
+    background-color: #f65e3b;
+    color: white;
+}
+
+.tile-128 {
+    background-color: #edcf72;
+    color: white;
+}
+
+.tile-256 {
+    background-color: #edcc61;
+    color: white;
+}
+
+.tile-512 {
+    background-color: #edc850;
+    color: white;
+}
+
+.tile-1024 {
+    background-color: #edc53f;
+    color: white;
+}
+
+.tile-2048 {
+    background-color: #edc22e;
+    color: white;
+}
+
+.tile-4096 {
+    background-color: #3c3a32;
+    color: #f9f6f2;
+}
+
+.tile-8192 {
+    background-color: #3c3a32;
+    color: #f9f6f2;
+}
 
 /* 滑块合并动画 */
 @keyframes pulse {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
+
     100% {
         transform: scale(1);
     }
@@ -174,6 +243,7 @@ body {
         opacity: 0;
         transform: scale(0.9);
     }
+
     100% {
         opacity: 1;
         transform: scale(1);
@@ -184,40 +254,51 @@ body {
     animation: appear 0.2s ease-in-out;
 }
 
+/* 底部说明与页脚容器 */
+.info-section {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.cheat-info {
+    font-size: 15px;
+    color: #776e65;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    border-top: 1px solid #d8d4d0;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.cheat-info p {
+    margin: 3px 0;
+}
+
 /* 底部 */
 #footer {
-    margin-top: 15px;
+    margin-top: auto;
     font-size: 16px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #776e65;
 }
 
 /* 赞助信息 */
 #sponsor-info {
-    width: 85%;
-    max-width: 600px;
+    width: 100%;
     font-size: 16px;
     text-align: center;
     color: #776e65;
     margin-top: 5px;
 }
 
-#sponsor-info a {
-    color: #f59563;
-    text-decoration: none;
-}
-
-#sponsor-info a:hover {
-    text-decoration: underline;
-}
-
-/* 底部链接 */
+#sponsor-info a,
 #footer a {
     color: #f59563;
-    text-decoration: none;
-}
-
-#footer a:hover {
     text-decoration: underline;
 }
 
@@ -288,51 +369,29 @@ body {
 }
 
 /* 适配不同屏幕尺寸 */
-@media (max-width: 768px) {
-    body {
-        padding: 10px 0;
-        justify-content: flex-start;
+@media (max-width: 520px) {
+    .title {
+        font-size: 45px;
     }
-    
-    #game-container {
-        width: 95%;
-        margin-top: 0;
-        padding: 10px;
-        max-height: 85vh;
+
+    .score-item {
+        padding: 5px 15px;
     }
-    
-    #header h1 {
-        font-size: 28px;
-        margin-bottom: 10px;
-    }
-    
-    .score-item span:first-child {
-        font-size: 11px;
-    }
-    
+
     .score-item span:last-child {
-        font-size: 18px;
+        font-size: 20px;
     }
-    
-    #sponsor-info {
-        width: 95%;
-        margin-top: 10px;
-        font-size: 14px;
-        position: relative;
-        bottom: 0;
-    }
-    
-    #footer {
-        margin-top: 8px;
+
+    .game-intro {
         font-size: 14px;
     }
-    
+
     /* 移动端模态窗口按钮样式 */
     .modal-buttons {
         flex-direction: column;
         gap: 8px;
     }
-    
+
     .modal-buttons button {
         min-width: auto;
         padding: 12px 16px;
@@ -343,7 +402,7 @@ body {
 /* 作弊模式通知 */
 #cheat-notification {
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 0, 0, 0.7);

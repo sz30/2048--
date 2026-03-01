@@ -1,10 +1,9 @@
 from flask import Flask, render_template, jsonify, request, send_from_directory
 import random
-import os
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 
-# 初始化棋盘
+# 初始化游戏棋盘
 def init_board():
     board = [[0] * 4 for _ in range(4)]
     add_random_tile(board)
@@ -18,7 +17,7 @@ def add_random_tile(board):
         i, j = random.choice(empty_cells)
         board[i][j] = random.choice([2, 4])
 
-# 移动逻辑
+# 处理棋盘滑动逻辑
 def move(board, direction):
     new_board = [row[:] for row in board]
     merged = [[False] * 4 for _ in range(4)]
@@ -82,7 +81,7 @@ def move(board, direction):
     # 检查是否有变化
     if new_board != board:
         add_random_tile(new_board)
-    return new_board
+    return new_board, merged
 
 # 检查游戏是否结束
 def is_game_over(board):
@@ -122,9 +121,9 @@ def move_route():
     if direction not in ['up', 'down', 'left', 'right']:
         return jsonify({'error': 'Invalid direction'}), 400
 
-    new_board = move(current_board, direction)
+    new_board, merged = move(current_board, direction)
     game_over = is_game_over(new_board)
-    return jsonify({'board': new_board, 'gameOver': game_over})
+    return jsonify({'board': new_board, 'merged': merged, 'gameOver': game_over})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=3000, debug=False)

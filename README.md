@@ -25,7 +25,6 @@
   </details>
 </div>
 
-
 [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md)
 
 # 🎮 2048++
@@ -37,7 +36,7 @@ An enhanced version of the classic 2048 game, now with even more fun features! T
 2048 is a simple yet addictive number-merging game. On a 4x4 grid, swipe up, down, left, or right to merge tiles with the same number. The goal? Reach 2048 (but hey, you can keep going for even higher scores)!
 
 **How to play:**
-- Use arrow keys or WASD to move the tiles.
+- Move tiles with arrow keys (←↑→↓), or swipe on mobile.
 - When two tiles with the same number collide, they merge into one.
 - After each move, a new 2 or 4 will randomly appear in an empty spot.
 - The game ends when there are no more moves left.
@@ -51,34 +50,43 @@ An enhanced version of the classic 2048 game, now with even more fun features! T
 - Never let a slip of the finger ruin your game again!
 
 ### 2. Secret Cheat Mode
-- Enter the magic sequence: ←←→→ →→←← (left, left, right, right,  right, right, left, left)
+- Enter the magic sequence: ←←→→ →→←← (left, left, right, right; right, right, left, left).
 - All tiles will magically turn into 128!
-- It’s an Easter egg, just for fun.
+- An Easter egg to skip the early grind — just for fun.
 - Pro tip: Cheating is fun, but don’t overdo it! 😉
 
 ## 🎯 Demo
 
 🎯 : [Play here](http://2048.765431.xyz/)
-<img width="1279" alt="demo" src="https://github.com/user-attachments/assets/0df2c956-b6d9-4371-a916-f6ac3ae642be" />
-
-
+<img width="1279" alt="demo" src="assets/demo_v2.png" />
 
 ## 📁 Project Structure
-```
+```text
 2048/
+├── assets/                   # Project media and screenshots
 ├── static/
-│ ├── css/
-│ │ └── styles.css # Game styles
-│ └── js/
-│ └── script.js # Frontend game logic
-├── index.html # Main game page
-└── 2048.py # Backend server
+│   ├── css/
+│   │   └── styles.css        # Game styles
+│   └── js/
+│       └── script.js         # Frontend game logic
+├── index.html                # Main game page
+├── 2048.py                   # Backend server
+├── requirements.txt          # Python dependencies
+├── Dockerfile                # Docker image configuration
+├── docker-compose.yml        # Docker compose configuration
+└── DEPLOYMENT.md             # Deployment guide
 ```
+
 **File Descriptions:**
+- `assets/`: Stores project images such as demonstration screenshots (`demo_v1.png`, `demo_v2.png`, etc.).
 - `2048.py`: Backend server written with Flask, handles game logic and API requests.
 - `script.js`: Frontend game logic, including moves, animations, and special features.
 - `styles.css`: Game styles, making sure everything looks nice and responsive.
 - `index.html`: The main page that brings everything together.
+- `requirements.txt`: Lists the Python dependencies needed to run the backend.
+- `Dockerfile`: Defines the environment to run the app using Docker.
+- `docker-compose.yml`: Simplifies Docker deployment by managing services.
+- `DEPLOYMENT.md`: Step-by-step guide for deploying the application.
 
 ## 🚀 Getting Started
 
@@ -87,7 +95,7 @@ An enhanced version of the classic 2048 game, now with even more fun features! T
 2. Make sure you have Python 3.x installed.
 3. Install dependencies: `pip install flask`
 4. Run: `python 2048.py`
-5. Open your browser and go to: [http://localhost:9969](http://localhost:9969)
+5. Open your browser and go to: [http://localhost:3000](http://localhost:3000)
 
 **Method 2: Clone from GitHub**
 ```bash
@@ -109,11 +117,14 @@ GPL-2.0 license
 
 Still updating! Issues and Pull Requests are super welcome—let’s make this game even more awesome together!
 
-
 ## 🙏 Acknowledgements
 
 Thanks to the following sponsors for supporting this project:
-- [Aurora Cloud](https://www.free-vps.net/) providing the server
+- [/](#) providing the server
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=sz30/2048--&type=date&legend=top-left)](https://www.star-history.com/#sz30/2048--&type=date&legend=top-left)
 
 ---
-_Last updated: Oct. 2025_
+_Last updated: Mar. 2026_

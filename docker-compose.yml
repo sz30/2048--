@@ -4,7 +4,7 @@ services:
   2048-game:
     build: .
     ports:
-      - "9969:9969"
+      - "3000:3000"
     restart: unless-stopped
     environment:
       - FLASK_ENV=production

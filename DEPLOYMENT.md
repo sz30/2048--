@@ -44,7 +44,7 @@ docker-compose ps
 docker-compose logs -f
 
 # 测试访问
-curl http://localhost:9969
+curl http://localhost:3000
 ```
 
 ## 🔧 手动部署
@@ -73,16 +73,16 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker build -t 2048-game .
 
 # 运行容器
-docker run -d -p 9969:9969 --name 2048-game --restart unless-stopped 2048-game
+docker run -d -p 3000:3000 --name 2048-game --restart unless-stopped 2048-game
 ```
 
 ## 🌐 访问游戏
 
 部署成功后，通过以下方式访问：
 
-- **本地访问**: http://localhost:9969
-- **公网访问**: http://your-serv00-ip:9969
-- **域名访问**: http://your-domain.com:9969（如果配置了域名）
+- **本地访问**: http://localhost:3000
+- **公网访问**: http://your-serv00-ip:3000
+- **域名访问**: http://your-domain.com:3000（如果配置了域名）
 
 ## 📊 管理命令
 
@@ -110,11 +110,11 @@ docker-compose down
 1. **端口被占用**
    ```bash
    # 查看端口占用
-   netstat -tulpn | grep 9969
+   netstat -tulpn | grep 3000
    
    # 修改端口（编辑docker-compose.yml）
    ports:
-     - "8080:9969"  # 改为8080端口
+     - "8080:3000"  # 改为8080端口
    ```
 
 2. **Docker权限问题**
@@ -161,7 +161,7 @@ docker-compose up -d
 ## 📝 注意事项
 
 1. **免费VPS限制**: serv00免费容器可能有资源限制，建议监控内存和CPU使用情况
-2. **端口开放**: 确保9969端口在防火墙中开放
+2. **端口开放**: 确保3000端口在防火墙中开放
 3. **域名配置**: 如需使用域名访问，请配置DNS解析到serv00 IP
 4. **备份**: 定期备份游戏数据和配置
 

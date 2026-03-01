@@ -22,23 +22,23 @@ async function initGame() {
         const data = await response.json();
         board = data.board;
         currentScore = 0;
-        
-        // 从localStorage和cookie中获取最佳分数，并使用较大值
-        const cookieBestScore = parseInt(document.getElementById('best-score').textContent) || 0;
-        bestScore = Math.max(parseInt(localStorage.getItem('bestScore') || 0), cookieBestScore);
+
+        // 从localStorage和当前DOM记录中获取最佳分数，并使用较大值
+        const domBestScore = parseInt(document.getElementById('best-score').textContent) || 0;
+        bestScore = Math.max(parseInt(localStorage.getItem('bestScore') || 0), domBestScore);
         localStorage.setItem('bestScore', bestScore);
-        
+
         historyStack = []; // 清空历史记录栈
-        
+
         // 重置游戏结束状态
         isGameOver = false;
 
         updateUI(); // 更新界面显示
-        
+
         // 更新分数显示
         document.getElementById('current-score').textContent = currentScore;
         document.getElementById('best-score').textContent = bestScore;
-        
+
         // 保存游戏状态
         saveGameState();
     } catch (error) {
@@ -57,7 +57,7 @@ function updateUI() {
             cell.className = 'cell';
             cell.dataset.row = i;
             cell.dataset.col = j;
-            
+
             if (board[i][j] !== 0) {
                 cell.textContent = board[i][j];
                 cell.classList.add(`tile-${board[i][j]}`);
@@ -65,7 +65,7 @@ function updateUI() {
             gridContainer.appendChild(cell);
         }
     }
-    
+
     // 根据单元格宽度调整字体大小
     adjustFontSize();
 }
@@ -75,7 +75,7 @@ function adjustFontSize() {
     const cells = document.querySelectorAll('.cell');
     const gridContainer = document.getElementById('grid-container');
     const cellWidth = gridContainer.offsetWidth / 4 * 0.9; // 考虑间距后的单元格宽度
-    
+
     cells.forEach(cell => {
         if (cell.textContent) {
             if (cell.textContent.length <= 2) {
@@ -100,11 +100,11 @@ function saveGameState() {
 // 检测合并状态
 function detectMerges(oldBoard, newBoard, direction) {
     const merged = Array(4).fill().map(() => Array(4).fill(false));
-    
+
     // 根据移动方向确定遍历顺序
     const rows = direction === 'down' ? [3, 2, 1, 0] : [0, 1, 2, 3];
     const cols = direction === 'right' ? [3, 2, 1, 0] : [0, 1, 2, 3];
-    
+
     if (direction === 'left' || direction === 'right') {
         // 水平移动
         for (let i = 0; i < 4; i++) {
@@ -134,15 +134,14 @@ function detectMerges(oldBoard, newBoard, direction) {
             }
         }
     }
-    
+
     return merged;
 }
 
 // 计算分数变化
-function calculateScoreDifference(oldBoard, newBoard, direction) {
-    const merged = detectMerges(oldBoard, newBoard, direction);
+function calculateScoreDifference(merged, newBoard) {
     let scoreChange = 0;
-    
+
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
             if (merged[i][j]) {
@@ -150,7 +149,7 @@ function calculateScoreDifference(oldBoard, newBoard, direction) {
             }
         }
     }
-    
+
     return scoreChange;
 }
 
@@ -160,13 +159,13 @@ async function handleMove(direction) {
     if (isGameOver) {
         return;
     }
-    
+
     // 保存当前状态到历史记录栈（在移动前保存）
     historyStack.push({
         board: JSON.parse(JSON.stringify(board)), // 深拷贝当前棋盘
         score: currentScore,
     });
-    
+
     // 保存历史记录到localStorage
     localStorage.setItem('historyStack', JSON.stringify(historyStack));
 
@@ -179,14 +178,14 @@ async function handleMove(direction) {
     }
 
     const oldBoard = JSON.parse(JSON.stringify(board));
-    
+
     try {
         const response = await fetch('/move', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ direction, board: oldBoard }),
         });
-        
+
         const data = await response.json();
 
         if (data.error) {
@@ -196,29 +195,29 @@ async function handleMove(direction) {
 
         // 检测是否有变化
         const hasChanged = JSON.stringify(data.board) !== JSON.stringify(oldBoard);
-        
+
         if (hasChanged) {
             // 计算分数变化
-            const scoreChange = calculateScoreDifference(oldBoard, data.board, direction);
+            const scoreChange = calculateScoreDifference(data.merged, data.board);
             currentScore += scoreChange;
-            
+
             // 更新分数显示
             document.getElementById('current-score').textContent = currentScore;
-            
+
             if (currentScore > bestScore) {
                 bestScore = currentScore;
                 localStorage.setItem('bestScore', bestScore);
                 document.getElementById('best-score').textContent = bestScore;
             }
-            
+
             // 更新当前棋盘数据
             board = data.board;
-            
+
             // 保存游戏状态
             saveGameState();
-            
+
             // 更新UI，显示动画
-            updateBoardWithAnimation(oldBoard, data.board, direction);
+            updateBoardWithAnimation(oldBoard, data.board, data.merged);
         }
 
         if (data.gameOver) {
@@ -235,23 +234,22 @@ async function handleMove(direction) {
 }
 
 // 通过对比找出变化的单元格并平滑更新
-function updateBoardWithAnimation(oldBoard, newBoard, direction) {
+function updateBoardWithAnimation(oldBoard, newBoard, merged) {
     const gridContainer = document.getElementById('grid-container');
     const cells = Array.from(gridContainer.querySelectorAll('.cell'));
-    const merged = detectMerges(oldBoard, newBoard, direction);
-    
+
     // 更新单元格内容并添加动画效果
     cells.forEach(cell => {
         const row = parseInt(cell.dataset.row);
         const col = parseInt(cell.dataset.col);
-        
+
         if (newBoard[row][col] !== oldBoard[row][col]) {
             if (newBoard[row][col] !== 0) {
                 if (merged[row][col]) {
                     // 合并动画
                     cell.textContent = newBoard[row][col];
                     cell.className = `cell tile-${newBoard[row][col]} pulse`;
-                    
+
                     // 动画结束后移除动画类
                     cell.addEventListener('animationend', () => {
                         cell.classList.remove('pulse');
@@ -260,7 +258,7 @@ function updateBoardWithAnimation(oldBoard, newBoard, direction) {
                     // 新出现的滑块动画
                     cell.textContent = newBoard[row][col];
                     cell.className = `cell tile-${newBoard[row][col]} appear`;
-                    
+
                     // 动画结束后移除动画类
                     cell.addEventListener('animationend', () => {
                         cell.classList.remove('appear');
@@ -277,7 +275,7 @@ function updateBoardWithAnimation(oldBoard, newBoard, direction) {
             }
         }
     });
-    
+
     // 调整字体大小
     adjustFontSize();
 }
@@ -286,12 +284,12 @@ function updateBoardWithAnimation(oldBoard, newBoard, direction) {
 function enterCheatMode() {
     isCheatMode = true;
     replaceAllTilesWith128(); // 替换所有非空格子为128
-    
+
     // 显示作弊模式提示
     const gameContainer = document.getElementById('game-container');
     const cheatNotification = document.createElement('div');
     cheatNotification.id = 'cheat-notification';
-    cheatNotification.textContent = '作弊模式已激活!';
+    cheatNotification.textContent = 'Cheat Mode Activated!';
     cheatNotification.style.position = 'absolute';
     cheatNotification.style.top = '10px';
     cheatNotification.style.left = '50%';
@@ -302,7 +300,7 @@ function enterCheatMode() {
     cheatNotification.style.borderRadius = '5px';
     cheatNotification.style.zIndex = '100';
     gameContainer.appendChild(cheatNotification);
-    
+
     // 3秒后自动退出作弊模式
     setTimeout(() => {
         exitCheatMode();
@@ -345,16 +343,16 @@ function undoMove() {
     const previousState = historyStack.pop(); // 弹出最近的历史状态
     board = previousState.board; // 恢复棋盘
     currentScore = previousState.score; // 恢复分数
-    
+
     // 重置游戏结束状态，允许继续游戏
     isGameOver = false;
-    
+
     // 更新界面
     updateUI();
-    
+
     // 更新分数显示
     document.getElementById('current-score').textContent = currentScore;
-    
+
     // 保存游戏状态
     saveGameState();
 }
@@ -366,10 +364,10 @@ function handleRestart() {
     if (modal.style.display === 'block') {
         modal.style.display = 'none';
     }
-    
+
     // 重置游戏结束状态
     isGameOver = false;
-    
+
     // 重新初始化游戏
     setTimeout(() => {
         initGame();
@@ -380,10 +378,10 @@ function handleRestart() {
 function showGameOverModal() {
     const modal = document.getElementById('game-over-modal');
     modal.style.display = 'block';
-    
+
     // 设置游戏结束状态
     isGameOver = true;
-    
+
     // 确保Undo按钮在游戏结束时仍然可用
     document.getElementById('undo-button').style.zIndex = '20';
 }
@@ -457,6 +455,11 @@ document.addEventListener('touchend', (event) => {
     }
 });
 
+// 防止移动端滑动屏幕导致的页面滚动
+document.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+}, { passive: false });
+
 // 监听窗口大小变化，调整字体
 window.addEventListener('resize', adjustFontSize);
 
@@ -464,20 +467,20 @@ window.addEventListener('resize', adjustFontSize);
 window.addEventListener('load', () => {
     // 尝试从localStorage获取游戏状态
     const savedBoard = localStorage.getItem('gameBoard');
-    
+
     // 如果有保存的游戏状态，恢复游戏
     if (savedBoard && savedBoard !== '[]') {
         board = JSON.parse(savedBoard);
         currentScore = parseInt(localStorage.getItem('currentScore')) || 0;
         bestScore = parseInt(localStorage.getItem('bestScore')) || 0;
         historyStack = JSON.parse(localStorage.getItem('historyStack')) || [];
-        
+
         // 重置游戏结束状态
         isGameOver = false;
-        
+
         // 更新界面
         updateUI();
-        
+
         // 更新分数显示
         document.getElementById('current-score').textContent = currentScore;
         document.getElementById('best-score').textContent = bestScore;

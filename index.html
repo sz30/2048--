@@ -1,65 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2048++</title>
+    <title>2048+</title>
     <!-- 引入CSS样式 -->
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
+
 <body>
-    <!-- 游戏容器 -->
-    <div id="game-container">
-        <!-- 头部 -->
-        <div id="header">
-            <h1>2048</h1>
-        </div>
-
-        <!-- 分数面板 -->
-        <div id="score-panel">
-            <div class="score-item">
-                <span>CURRENT</span>
-                <span id="current-score">0</span>
+    <div class="container">
+        <!-- 头部标题和控制区 -->
+        <div class="header-wrapper">
+            <div class="header-left">
+                <h1 class="title">2048+&nbsp;</h1>
+                <p class="game-intro">Moving tiles and get to the <strong>2048+</strong>&nbsp;!</p>
             </div>
-            <div class="score-item">
-                <span>BEST</span>
-                <span id="best-score">0</span>
+            <div class="header-right">
+                <div class="score-item">
+                    <span>SCORE</span>
+                    <span id="current-score">0</span>
+                </div>
+                <div class="score-item">
+                    <span>BEST</span>
+                    <span id="best-score">0</span>
+                </div>
+                <button id="undo-button" class="action-btn" onclick="undoMove()">Undo</button>
+                <button id="restart-button" class="action-btn" onclick="handleRestart()">New Game</button>
             </div>
         </div>
 
-        <!-- 按钮区域 -->
-        <div id="button-panel">
-            <button id="undo-button" onclick="undoMove()">Undo</button>
-            <button id="restart-button" onclick="handleRestart()">New Game</button>
-        </div>
+        <!-- 游戏主体 -->
+        <div id="game-container">
+            <div id="grid-container"></div>
 
-        <!-- 棋盘 -->
-        <div id="grid-container"></div>
-
-        <!-- 底部 -->
-        <div id="footer">
-            Enjoy by <a href="https://github.com/sz30" target="_blank">Shaun Zhang</a>&nbsp;&nbsp;SN:2380511065
-        </div>
-        
-        <!-- 游戏结束通知 -->
-        <div id="game-over-modal" class="modal">
-            <div class="modal-content">
-                <h2>Game Over!</h2>
-                <div class="modal-buttons">
-                    <button onclick="undoMoveAndCloseModal()">Undo</button>
-                    <button onclick="initGameAndCloseModal()">Try Again</button>
+            <!-- 游戏结束通知 -->
+            <div id="game-over-modal" class="modal">
+                <div class="modal-content">
+                    <h2>Game Over!</h2>
+                    <div class="modal-buttons">
+                        <button onclick="undoMoveAndCloseModal()">Undo</button>
+                        <button onclick="initGameAndCloseModal()">Try Again</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- 赞助信息 - 移到了游戏容器外部 -->
-    <div id="sponsor-info">
-        <!-- 特别鸣谢 <a href="https://www.serv00.com/" target="_blank">serv00</a> 提供服务器支持 -->
-        Special thanks to <a href="https://www.free-vps.net/" target="_blank">极光云</a> for providing server support  
+
+        <!-- 说明和页脚区域 -->
+        <div class="info-section">
+            <div class="cheat-info">
+                <p>💡 Enter ⬅️⬅️&nbsp;➡️➡️&nbsp;&nbsp;➡️➡️&nbsp;⬅️⬅️ to enter the <Strong>Cheat Mode</Strong>.</p>
+                <p>All tiles instantly transform into <Strong>128</Strong>, skip the early grind
+                    in seconds.
+                </p>
+            </div>
+
+            <div id="footer">
+                Enjoy by &nbsp;
+                <svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16"
+                    style="vertical-align: text-bottom; margin-right: 4px; fill: currentColor;">
+                    <path
+                        d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z">
+                    </path>
+                </svg>
+                <a href="https://github.com/sz30/2048--" target="_blank" class="github-link">
+                    Shaun
+                </a>
+            </div>
+
+            <!-- 赞助信息 -->
+            <div id="sponsor-info">
+                Special thanks to <a href="#" target="_blank">#</a> for providing server support
+            </div>
+        </div>
     </div>
 
     <!-- 引入JavaScript脚本 -->
     <script src="/static/js/script.js"></script>
 </body>
-</html> 
+
+</html>
