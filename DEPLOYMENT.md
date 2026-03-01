@@ -2,7 +2,7 @@
 
 ## 📋 前置要求
 
-- serv00免费VPS容器
+- VPS服务器
 - SSH访问权限
 - 基本的Linux命令行知识
 
@@ -10,22 +10,22 @@
 
 ### 1. 上传项目文件
 
-将整个项目文件夹上传到serv00容器：
+将整个项目文件夹上传到vps服务器：
 
 ```bash
 # 方法1: 使用scp上传
-scp -r ./2048 username@your-serv00-ip:/home/username/
+scp -r ./2048-- username@your-vps-ip:/home/username/
 
 # 方法2: 使用git（如果项目在GitHub上）
-git clone https://github.com/your-username/2048.git
-cd 2048
+git clone https://github.com/your-username/2048--.git
+cd 2048--
 ```
 
 ### 2. 一键部署
 
 ```bash
 # 进入项目目录
-cd /path/to/2048
+cd /path/to/2048--
 
 # 给部署脚本执行权限
 chmod +x deploy.sh
@@ -70,10 +70,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ```bash
 # 构建镜像
-docker build -t 2048-game .
+docker build -t 2048--.
 
 # 运行容器
-docker run -d -p 3000:3000 --name 2048-game --restart unless-stopped 2048-game
+docker run -d -p 3000:3000 --name 2048-- --restart unless-stopped 2048--
 ```
 
 ## 🌐 访问游戏
@@ -81,7 +81,7 @@ docker run -d -p 3000:3000 --name 2048-game --restart unless-stopped 2048-game
 部署成功后，通过以下方式访问：
 
 - **本地访问**: http://localhost:3000
-- **公网访问**: http://your-serv00-ip:3000
+- **公网访问**: http://your-vps-ip:3000
 - **域名访问**: http://your-domain.com:3000（如果配置了域名）
 
 ## 📊 管理命令
@@ -134,13 +134,13 @@ docker-compose down
 
 ```bash
 # 查看容器日志
-docker logs 2048-game
+docker logs 2048--
 
 # 查看Docker Compose日志
 docker-compose logs
 
 # 进入容器调试
-docker exec -it 2048-game /bin/bash
+docker exec -it 2048-- /bin/bash
 ```
 
 ## 🔄 更新部署
@@ -160,15 +160,14 @@ docker-compose up -d
 
 ## 📝 注意事项
 
-1. **免费VPS限制**: serv00免费容器可能有资源限制，建议监控内存和CPU使用情况
-2. **端口开放**: 确保3000端口在防火墙中开放
-3. **域名配置**: 如需使用域名访问，请配置DNS解析到serv00 IP
-4. **备份**: 定期备份游戏数据和配置
+1. **端口开放**: 确保3000端口在防火墙中开放
+2. **域名配置**: 如需使用域名访问，请配置DNS解析到vps服务器IP
+3. **备份**: 定期备份游戏数据和配置
 
 ## 🆘 获取帮助
 
 如果遇到问题：
 1. 查看日志文件
 2. 检查Docker和系统状态
-3. 参考serv00官方文档
+3. 参考VPS官方文档
 4. 联系技术支持 

@@ -1,45 +1,25 @@
-<div align="right">
-  <details>
-    <summary >🌐 Other Language</summary>
-    <div>
-      <div align="center">
-        <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=ja">日本語</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=ko">한국어</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=hi">हिन्दी</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=th">ไทย</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=fr">Français</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=de">Deutsch</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=es">Español</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=it">Itapano</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=ru">Русский</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=pt">Português</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=nl">Nederlands</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=pl">Polski</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=ar">العربية</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=fa">فارسی</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=tr">Türkçe</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=vi">Tiếng Việt</a>
-        | <a href="https://openaitx.github.io/view.html?user=sz30&project=2048--&lang=id">Bahasa Indonesia</a>
-      </div>
-    </div>
-  </details>
-</div>
-
 [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md)
 
-# 🎮 2048 ++
+<h1 align="center">2048--</h1>
 
-一个基于经典2048游戏的增强版本，加入了更多有趣的功能！这个项目是我在闲暇时间开发的一个小游戏，希望能给大家带来一些乐趣。
+<p align="center">
+  <em>经典数字消除游戏 2048 的增强版本，加入了 回撤机制 与 快速模式 等有趣的功能！</em>
+</p>
 
-## 🎯 游戏介绍
+<p align="center">
+  <img src="https://img.shields.io/badge/license-GPL--2.0-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/python-3.x-blue.svg" alt="Python 3.x">
+  <img src="https://img.shields.io/badge/framework-Flask-red.svg" alt="Flask">
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
+</p>
 
-2048是一个简单但令人上瘾的数字合并游戏。在4x4的棋盘上，通过上下左右滑动来合并相同的数字，目标是获得2048这个数字（当然，你可以继续玩下去获得更高的分数！）。
+## 🎮 Demo
 
-### 基本玩法：
-- 使用方向键（←↑→↓）移动方块，手机端支持滑动操作
-- 相同数字的方块相撞时会合并成为它们的和
-- 每次移动后会在空白处随机出现一个2或4
-- 当无法移动时游戏结束
+👉 [试玩](http://2048.765431.xyz/)
+<div align="center">
+  <img width="800" alt="2048-- Demo" src="assets/demo_v2.png" />
+</div>
+
 
 ## ✨ 特色功能
 
@@ -49,23 +29,38 @@
 - 支持连续撤回，直到游戏开始状态
 - 再也不用因为手滑而懊恼了！
 
-### 2. 隐藏的作弊模式
+### 2. 快速模式
 - 滑动特殊序列：←←→→ →→←←（左左右右 右右左左）
 - 激活后所有数字都会变成128
 - 彩蛋功能，可快速跳过初期阶段，仅供娱乐
-- 温馨提示：作弊虽好，但不要贪杯哦！
-
-## 🎯 Demo
-
-🎯 : [试玩](http://2048.765431.xyz/)
-<img width="1279" alt="demo" src="assets/demo_v2.png" />
 
 
+## 🚀 快速开始
+
+### 方法一：云端运行(推荐)
+```bash
+git clone https://github.com/sz30/2048--.git
+cd 2048--
+pip install flask
+python 2048--.py
+```
+打开浏览器并访问: [http://localhost:3000](http://localhost:3000)
+
+### 方法二：使用 Docker 环境
+*(具体的容器化部署策略，请参阅内置的 `DEPLOYMENT.md` 中文指南获取全文)*
+
+### 方法三：本地运行调试
+1. 下载最新的release版本
+2. 确保安装了Python 3.x
+3. 安装依赖：`pip install flask`
+4. 运行：`python 2048--.py`
+5. 打开浏览器并访问: [http://localhost:3000](http://localhost:3000)
 
 
 ## 📁 项目结构
+
 ```text
-2048/
+2048--/
 ├── assets/                   # 图像与媒体资源
 ├── static/
 │   ├── css/
@@ -73,7 +68,7 @@
 │   └── js/
 │       └── script.js         # 前端游戏逻辑
 ├── index.html                # 游戏主页面
-├── 2048.py                   # 后端服务器
+├── 2048--.py                   # 后端服务器
 ├── requirements.txt          # Python 依赖文件
 ├── Dockerfile                # Docker 镜像配置文件
 ├── docker-compose.yml        # Docker compose 配置文件
@@ -82,7 +77,7 @@
 
 ### 文件说明：
 - `assets/`: 存放项目演示截图及媒体文件（如旧版界面 `demo_v1.png` 以及现版界面 `demo_v2.png`）
-- `2048.py`: 使用Flask框架编写的后端服务器，处理游戏逻辑和API请求
+- `2048--.py`: 使用Flask框架编写的后端服务器，处理游戏逻辑和API请求
 - `script.js`: 前端游戏逻辑，包含移动处理、动画效果和特殊功能实现
 - `styles.css`: 游戏界面样式，确保游戏美观且响应式
 - `index.html`: 游戏主页面，整合所有资源
@@ -91,43 +86,29 @@
 - `docker-compose.yml`: 用于简化 Docker 部署和服务的管理
 - `DEPLOYMENT.md`: 详细的项目部署指南
 
-## 🚀 快速开始
-
-### 方法一：直接下载
-1. 下载最新的release版本
-2. 确保安装了Python 3.x
-3. 安装依赖：`pip install flask`
-4. 运行：`python 2048.py`
-5. 打开浏览器并访问: [http://localhost:3000](http://localhost:3000)
-
-### 方法二：从GitHub克隆
-```bash
-git clone https://github.com/sz30/2048.git
-cd 2048
-pip install flask
-python 2048.py
-```
 
 ## 🎨 自定义
 
-你可以通过修改`styles.css`来自定义游戏的外观，或者通过修改`script.js`来调整游戏的行为。所有的代码都有详细的注释，方便你进行修改！
+可通过修改`styles.css`来自定义游戏的外观，或者通过修改`script.js`来调整游戏的行为。所有的代码都有详细的注释，方便进行修改！
 
-## 📝 许可证
 
-GPL-2.0 license
+## 🤝 开源协议与协作共建
 
-## 🤝 贡献
+- 开源协议：[GPL-2.0](https://github.com/sz30/2048--/blob/main/LICENSE.txt)
+- 本项目持续更新中，欢迎提交Issue和PRs。让我们一起把这个游戏变得更好玩！
 
-持续更新中，欢迎提交Issue和Pull Request！让我们一起把这个游戏变得更好玩！
 
 ## 🙏 致谢
 
 感谢以下赞助者对本项目的支持：
+
 - [/](#) 提供服务器
+
 
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sz30/2048--&type=date&legend=top-left)](https://www.star-history.com/#sz30/2048--&type=date&legend=top-left)
+
 
 ---
 *最后更新：2026年3月*

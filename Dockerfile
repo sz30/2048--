@@ -17,8 +17,8 @@ COPY . .
 EXPOSE 3000
 
 # 设置环境变量
-ENV FLASK_APP=2048.py
+ENV FLASK_APP=2048--.py
 ENV FLASK_ENV=production
 
 # 启动命令
-CMD ["python", "2048.py"] 
+CMD ["python", "2048--.py"] 
