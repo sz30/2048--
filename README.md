@@ -8,8 +8,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-GPL--2.0-blue.svg" alt="License">
-  <img src="https://img.shields.io/badge/python-3.x-blue.svg" alt="Python 3.x">
-  <img src="https://img.shields.io/badge/framework-Flask-red.svg" alt="Flask">
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
 
@@ -36,61 +36,56 @@
 - An Easter egg to skip the early grind — just for fun.
 
 
-## 🚀 Getting Started
+## 🚀 Getting Started & Deployment
 
-**Method 1: Clone from GitHub**
-```bash
-git clone https://github.com/sz30/2048--.git
-cd 2048--
-pip install flask
-python 2048--.py
-```
-Open your browser and go to: [http://localhost:3000](http://localhost:3000)
+This project has been refactored into a **Pure Frontend Single-Page Application (SPA)**, making deployment and playing extremely lightweight.
 
-**Method 2: Docker**
+### Method 1: Play Locally (Easiest)
+- `git clone https://github.com/sz30/2048--.git` or download the zip.
+- Unzip it and simply double-click `index.html` to start playing in your browser!
 
-*(For specific containerization DEPLOYMENT strategies, please refer to the built-in 'Deployment.md' guide for the full text.)*
+### Method 2: Static Site Hosting (Recommended)
+Zero-cost, one-click deployment with global CDN using hosting platforms. Click the buttons below to deploy instantly:
 
-**Method 3: Download Release**
-1. Download the latest release.
-2. Make sure you have Python 3.x installed.
-3. Install dependencies: `pip install flask`
-4. Run: `python 2048--.py`
-5. Open your browser and go to: [http://localhost:3000](http://localhost:3000)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/sz30/2048--)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sz30/2048--)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sz30/2048--)
+
+Or configure manually:
+- **GitHub Pages**: Fork repo -> Settings -> Pages -> Enable Deploy from a branch (select main) -> Save.
+- **Cloudflare Pages**: Dashboard -> Pages -> Connect to Git (select repo) -> Framework preset: `None` -> Deploy.
+
+### Method 3: Traditional VPS Deployment (Nginx)
+For advanced users with their own servers (e.g., Serv00):
+1. Install Nginx on your server.
+2. Upload `index.html` to your Nginx web directory (usually `/var/www/html`).
+3. (Optional) Configure an Nginx virtual host for your domain and restart the service.
+
+*(For a detailed step-by-step guide, please refer to the built-in `DEPLOYMENT.md`)*
 
 
 ## 📁 Project Structure
 ```text
 2048--/
-├── assets/                   # Project media and screenshots
-├── static/
-│   ├── css/
-│   │   └── styles.css        # Game styles
-│   └── js/
-│       └── script.js         # Frontend game logic
-├── index.html                # Main game page
-├── 2048--.py                   # Backend server
-├── requirements.txt          # Python dependencies
-├── Dockerfile                # Docker image configuration
-├── docker-compose.yml        # Docker compose configuration
+├── assets/                   # Historical files and media resources
+├── index.html                # Main file containing all HTML/CSS/JS
 └── DEPLOYMENT.md             # Deployment guide
 ```
 
 **File Descriptions:**
-- `assets/`: Stores project images such as demonstration screenshots (`demo_v1.png`, `demo_v2.png`, etc.).
-- `2048--.py`: Backend server written with Flask, handles game logic and API requests.
-- `script.js`: Frontend game logic, including moves, animations, and special features.
-- `styles.css`: Game styles, making sure everything looks nice and responsive.
-- `index.html`: The main page that brings everything together.
-- `requirements.txt`: Lists the Python dependencies needed to run the backend.
-- `Dockerfile`: Defines the environment to run the app using Docker.
-- `docker-compose.yml`: Simplifies Docker deployment by managing services.
-- `DEPLOYMENT.md`: Step-by-step guide for deploying the application.
+- `assets/`: Stores historical project files and media resources (such as demonstration screenshots `demo_v2.png`).
+- `index.html`: **The core file**. This game has been extremely stripped down; all structure (HTML), styling (CSS), matrix calculation, and game mechanics (JS) are encapsulated in this single file. This follows the KISS principle, making distribution and hosting extremely easy.
+- `DEPLOYMENT.md`: Step-by-step guide for deploying the application (Static hosting & VPS).
 
 
 ## 🎨 Customization
 
-Want to make it your own? Tweak `styles.css` for a new look, or dive into `script.js` to change up the gameplay. All code is well-commented for easy hacking!
+Thanks to the ultra-minimalist single-file architecture, modding this game couldn't be easier! No build tools or dev environments required. Just open `index.html` in any text editor:
+
+- **Tweak the UI**: Locate the `<style>` block at the top to completely overhaul the theme colors, tile border-radius, or typography.
+- **Hack the Mechanics**: Scroll down to the `<script>` block where all matrix logic and scoring live. Want a 5x5 board? A new cheat code? Go for it!
+
+The code is standalone and begging to be hacked. Have fun!
 
 
 ## 📝 License & Contributing
@@ -111,4 +106,4 @@ Thanks to the following sponsors for supporting this project:
 
 
 ---
-_Last updated: Mar. 2026_
+_Last updated: May. 2026_

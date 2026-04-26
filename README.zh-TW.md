@@ -8,8 +8,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-GPL--2.0-blue.svg" alt="License">
-  <img src="https://img.shields.io/badge/python-3.x-blue.svg" alt="Python 3.x">
-  <img src="https://img.shields.io/badge/framework-Flask-red.svg" alt="Flask">
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
 </p>
 
@@ -36,61 +36,54 @@
 - 溫馨提示：加速雖好，但不要貪杯喔！
 
 
-## 🚀 快速開始
+## 🚀 快速開始與部署
 
-### 方法一：雲端運行(建議)
-```bash
-git clone https://github.com/sz30/2048--.git
-cd 2048--
-pip install flask
-python 2048--.py
-```
-開啟瀏覽器並訪問: [http://localhost:3000](http://localhost:3000)
+本專案已重構為**純前端靜態單頁應用（SPA）**，部署與遊玩極其輕量。
 
-### 方法二：使用 Docker 環境
-*(具體的容器化部署策略，請參閱內置的 `DEPLOYMENT.md` 中文指南以獲得全文)*
+### 方法一：本地直接遊玩（最簡單）
+- `git clone https://github.com/sz30/2048--.git` 或下載壓縮檔。
+- 解壓縮後，雙擊打開 `index.html` 即可在瀏覽器中開始遊戲！
 
-### 方法三：本地運行偵錯
-1. 下載最新的release版本
-2. 確保安裝了Python 3.x
-3. 安裝依賴：`pip install flask`
-4. 運行：`python 2048--.py`
-5. 開啟瀏覽器並訪問: [http://localhost:3000](http://localhost:3000)
+### 方法二：靜態網站託管方案（首選建議）
+利用託管平台零成本、一鍵部署並附帶全球 CDN 加速。您可以點擊下方按鈕直接一鍵部署：
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/sz30/2048--)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sz30/2048--)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sz30/2048--)
+
+或者手動配置：
+- **GitHub Pages**: Fork 本倉庫 -> 進入 Settings -> Pages -> 開啟 Deploy from a branch (選 main 分支) -> Save。
+- **Cloudflare Pages**: 登入控制台 -> Pages -> Connect to Git 選中倉庫 -> Framework preset 選 `None` -> 部署。
+
+### 方法三： VPS 部署方案 (Nginx)
+1. 在伺服器安裝 Nginx。
+2. 將專案根目錄下的 `index.html` 上傳至伺服器的 Nginx 網頁目錄（通常是 `/var/www/html`）。
+3. (可選) 配置 Nginx 虛擬主機綁定獨立域名，重啟服務即可。
+
+*(更詳盡的部署圖文步驟，請參閱內置的 `DEPLOYMENT.md` 部署指南)*
 
 
 ## 📁 專案結構
 
 ```text
 2048--/
-├── assets/                   # 圖片與媒體資源
-├── static/
-│   ├── css/
-│   │   └── styles.css        # 遊戲介面樣式
-│   └── js/
-│       └── script.js         # 前端遊戲邏輯
-├── index.html                # 遊戲主頁面
-├── 2048--.py                   # 後端伺服器
-├── requirements.txt          # Python 依賴檔案
-├── Dockerfile                # Docker 鏡像配置檔案
-├── docker-compose.yml        # Docker compose 配置檔案
+├── assets/                   # 歷史文件及媒體資源
+├── index.html                # 核心檔案：包含所有的 HTML/CSS/JS
 └── DEPLOYMENT.md             # 部署指南
 ```
 
 ### 檔案說明：
-- `assets/`: 存放專案演示截圖及媒體檔案（如舊版介面 `demo_v1.png` 以及現版介面 `demo_v2.png`）
-- `2048--.py`: 使用Flask框架編寫的後端伺服器，處理遊戲邏輯和API請求
-- `script.js`: 前端遊戲邏輯，包含移動處理、動畫效果和特殊功能實現
-- `styles.css`: 遊戲介面樣式，確保遊戲美觀且響應式
-- `index.html`: 遊戲主頁面，整合所有資源
-- `requirements.txt`: 運行後端所需的Python依賴列表
-- `Dockerfile`: 定義使用 Docker 運行小遊戲的環境配置
-- `docker-compose.yml`: 用於簡化 Docker 部署和服務的管理
-- `DEPLOYMENT.md`: 詳細的專案部署指南
+- `assets/`: 存放專案歷史文件及媒體檔案（如演示截圖 `demo_v2.png`）。
+- `index.html`: **核心檔案**。本遊戲已極致精簡，所有的遊戲介面（HTML）、樣式（CSS）以及矩陣計算、動畫邏輯（JS）全部封裝在此檔案中，遵循 KISS 原則，便於分發與部署。
+- `DEPLOYMENT.md`: 詳細的專案部署指南（包含靜態網站託管與 VPS 部署方案）。
 
 
 ## 🎨 自訂義
 
-可以透過修改styles.css來自訂遊戲的外觀，或者透過修改script.js來調整遊戲的行為。所有的程式碼都有詳細的註釋，方便進行修改！
+本遊戲採用極簡的單檔案架構，無需配置任何開發環境，只需用記事本或任意編輯器打開 `index.html`：
+
+- **修改外觀**：找到頂部的 `<style>` 標籤，可以隨意修改配色方案、方塊圓角或字體大小，定製專屬 UI。
+- **新增玩法**：找到底部的 `<script>` 標籤，所有的矩陣邏輯和計分規則都清晰可見，可輕鬆創造獨特的 2048 變種（例如改成 5x5 棋盤，或是引入全新的彩蛋機制）。
 
 
 ## 🤝 開源協定與協作共建
@@ -111,4 +104,4 @@ python 2048--.py
 
 
 ---
-*最後更新：2026年3月*
+*最後更新：2026年5月*

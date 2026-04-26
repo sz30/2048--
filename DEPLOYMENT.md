@@ -1,173 +1,79 @@
-# 2048游戏部署指南 - serv00免费VPS
+# 2048-- 部署指南
 
-## 📋 前置要求
+由于本项目的架构已重构为**纯前端静态单页应用（SPA）**，无需要配置 Python、Flask 或 Docker 环境。整个游戏只有一个 `index.html`（内嵌了所有的 CSS 与 JS 以及依赖资源），这使得部署变得极其简单且**完全免费**。
 
-- VPS服务器
-- SSH访问权限
-- 基本的Linux命令行知识
+以下提供两种主流的部署方案：
 
-## 🚀 快速部署（推荐）
+---
 
-### 1. 上传项目文件
+## 方案一：静态网站托管服务（极力推荐，免费且带全球 CDN）
 
-将整个项目文件夹上传到vps服务器：
+目前最流行、最简单的方式。无需购买服务器，无需运维。
 
+### 1. GitHub Pages (最方便)
+1. Fork 本仓库
+2. 进入 Fork 的仓库，点击 `Settings` -> `Pages`
+3. 在 `Build and deployment` 下拉菜单中选择 `Deploy from a branch`
+4. Branch 选择 `main`，文件夹选择 `/ (root)`，点击 `Save`
+5. 等待 1 分钟左右，刷新页面顶部会显示你的专属游戏链接！
+
+### 2. Cloudflare Pages (速度最快)
+1. 注册并登录 [Cloudflare](https://dash.cloudflare.com/)
+2. 在左侧菜单选择 `Workers & Pages`
+3. 点击 `Create application` -> 选择 `Pages` 标签页 -> `Connect to Git`，授权 GitHub 账号
+4. 选择 `2048--` 仓库，点击 `Begin setup`
+5. `Framework preset` 选择 `None`，`Build command` 留空，`Build output directory` 留空
+6. 点击 `Save and Deploy`。你的游戏将立即上线，并由 Cloudflare 提供全球边缘节点加速！
+
+---
+
+## 方案二：传统 VPS 部署 (使用 Nginx 托管)
+
+如果有自己的服务器（如阿里云, 谷歌云等），且想托管在自己的独立域名下：
+
+### 1. 安装 Nginx
+还没安装 Nginx 的，先在服务器上安装：
 ```bash
-# 方法1: 使用scp上传
-scp -r ./2048-- username@your-vps-ip:/home/username/
-
-# 方法2: 使用git（如果项目在GitHub上）
-git clone https://github.com/your-username/2048--.git
-cd 2048--
-```
-
-### 2. 一键部署
-
-```bash
-# 进入项目目录
-cd /path/to/2048--
-
-# 给部署脚本执行权限
-chmod +x deploy.sh
-
-# 运行自动部署脚本
-./deploy.sh
-```
-
-### 3. 验证部署
-
-```bash
-# 查看服务状态
-docker-compose ps
-
-# 查看日志
-docker-compose logs -f
-
-# 测试访问
-curl http://localhost:3000
-```
-
-## 🔧 手动部署
-
-如果自动部署失败，可以手动执行以下步骤：
-
-### 1. 安装Docker（如果未安装）
-
-```bash
-# 更新包管理器
+# Ubuntu/Debian
 sudo apt update
+sudo apt install nginx -y
 
-# 安装Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-
-# 安装Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+# CentOS/RHEL
+sudo yum install epel-release
+sudo yum install nginx -y
 ```
 
-### 2. 构建和运行
+### 2. 上传文件到服务器
+将本仓库的 `index.html` 上传到服务器的 Nginx 默认网页根目录中，通常是 `/var/www/html/`。
 
 ```bash
-# 构建镜像
-docker build -t 2048--.
+# 在本地项目目录下，使用 scp 上传到你的 VPS：
+scp index.html root@your-vps-ip:/var/www/html/
+```
+*(提示：记得先把 `/var/www/html/` 下原有的默认文件清空)*
 
-# 运行容器
-docker run -d -p 3000:3000 --name 2048-- --restart unless-stopped 2048--
+### 3. (可选) 配置 Nginx 绑定域名
+如果想绑定独立域名，可以在 `/etc/nginx/sites-available/` 下创建一个配置文件（如 `2048.conf`）：
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com; # 替换为你的真实域名
+
+    root /var/www/html;          # 确保路径对应你上传的路径
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
 ```
 
-## 🌐 访问游戏
-
-部署成功后，通过以下方式访问：
-
-- **本地访问**: http://localhost:3000
-- **公网访问**: http://your-vps-ip:3000
-- **域名访问**: http://your-domain.com:3000（如果配置了域名）
-
-## 📊 管理命令
-
+启用配置并重启 Nginx：
 ```bash
-# 查看服务状态
-docker-compose ps
-
-# 查看实时日志
-docker-compose logs -f
-
-# 重启服务
-docker-compose restart
-
-# 停止服务
-docker-compose down
-
-# 更新代码后重新部署
-./deploy.sh
+sudo ln -s /etc/nginx/sites-available/2048.conf /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
 ```
 
-## 🔍 故障排除
-
-### 常见问题
-
-1. **端口被占用**
-   ```bash
-   # 查看端口占用
-   netstat -tulpn | grep 3000
-   
-   # 修改端口（编辑docker-compose.yml）
-   ports:
-     - "8080:3000"  # 改为8080端口
-   ```
-
-2. **Docker权限问题**
-   ```bash
-   # 将用户添加到docker组
-   sudo usermod -aG docker $USER
-   # 重新登录或重启
-   ```
-
-3. **内存不足**
-   ```bash
-   # 清理Docker缓存
-   docker system prune -a
-   ```
-
-### 查看详细日志
-
-```bash
-# 查看容器日志
-docker logs 2048--
-
-# 查看Docker Compose日志
-docker-compose logs
-
-# 进入容器调试
-docker exec -it 2048-- /bin/bash
-```
-
-## 🔄 更新部署
-
-当代码有更新时：
-
-```bash
-# 1. 上传新代码
-# 2. 重新部署
-./deploy.sh
-
-# 或者手动更新
-docker-compose down
-docker-compose build --no-cache
-docker-compose up -d
-```
-
-## 📝 注意事项
-
-1. **端口开放**: 确保3000端口在防火墙中开放
-2. **域名配置**: 如需使用域名访问，请配置DNS解析到vps服务器IP
-3. **备份**: 定期备份游戏数据和配置
-
-## 🆘 获取帮助
-
-如果遇到问题：
-1. 查看日志文件
-2. 检查Docker和系统状态
-3. 参考VPS官方文档
-4. 联系技术支持 
+### 4. 访问游戏
+在浏览器中输入服务器 IP 或绑定的域名即可开始畅玩！
