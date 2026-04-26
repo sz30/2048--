@@ -47,8 +47,10 @@
 ### 方法二：靜態網站託管方案（首選建議）
 利用託管平台零成本、一鍵部署並附帶全球 CDN 加速。您可以點擊下方按鈕直接一鍵部署：
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/sz30/2048--)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/pages)
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sz30/2048--)
+
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sz30/2048--)
 
 或者手動配置：

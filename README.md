@@ -47,8 +47,10 @@ This project has been refactored into a **Pure Frontend Single-Page Application 
 ### Method 2: Static Site Hosting (Recommended)
 Zero-cost, one-click deployment with global CDN using hosting platforms. Click the buttons below to deploy instantly:
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/sz30/2048--)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/pages)
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sz30/2048--)
+
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sz30/2048--)
 
 Or configure manually:
